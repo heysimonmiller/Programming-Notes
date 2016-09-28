@@ -1,0 +1,1033 @@
+CSS NOTES:
+____________________________________________
+{
+Author styles:
+1) inline styles - written in HTML using style attribute. They will overwrite any other external styles.
+e.g: <body style="background-color: orange;"> 
+
+2) internal styles - Internal styles are embedded in the <head> section of the HTML document and are defined inside a <style> tag.
+
+3) external styles - written in the <head> section. "rel" stands for relationship - i.e. stylesheet <link rel="stylesheet" href="css/style.css"> 
+* The rel attribute specifies the relationship between the HTML document and the linked document
+* The href attribute points to the location of the CSS file. 
+* MAKE SURE rel="stylesheet" NOT "stylesheets" (or anything else).
+
+stylesheet is cached after the first visit - so external style sheet is better because it doesn't have to keep downloading when you change page.
+
+The @import statement lets us import CSS from other style sheets. It shares some of the same advantages as linking a stylesheet, like browser caching and maintenance efficiency.
+
+Can use @import in the style.css file with: @import "import-styles.css"; (must be kept at the TOP of the page before any CSS code is written)
+}
+																																									------------
+																																										Comments
+																																									------------
+{
+Just like in HTML, we can write comments in CSS to add helpful notes and hints that let us know what's going on in our code.
+Using CSS comments
+
+Comments in CSS begin with a forward-slash and asterisk /* and end with an asterisk and forward slash */. Everything we write between the opening and closing characters is ignored by the browser.
+:;
+/* Class Selectors */
+}
+.main-header {
+  background: orange; /* Makes the header bg orange */
+}
+
+																																									-------------
+																																										SELECTORS
+																																									-------------
+{
+https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax
+https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors
+
+Selectors are one of the most important and powerful parts of CSS because they let us target the content we want to style. 
+When we define a selector in our stylesheet, we’re instructing the browser to match every instance of that selector in the HTML.
+
+You can target multiple selectors by seperating them with a comma.
+}
+
+For example:
+.primary-content,
+.main-header {
+	text-aling: justify;
+}
+
+***********************
+	Universal Selectors 
+***********************
+{
+	Defined with an asterisk (*)
+https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors
+The universal selector targets every element on the page at once and applies the styles we set.
+}
+* { 
+  margin: 0; 
+  padding: 0;
+}
+{
+This universal selector will apply the margin and padding styles to every element on the page.
+}
+
+
+**************************************
+	Type Selectors / Element Selectors
+**************************************
+{
+Type selectors target element types on the page. 
+They’re also called element selectors because we use the element’s HTML tag as the selector ( <p> tag, <h1> tag etc).
+These are examples of Type Selectors:;
+}
+header {
+  background-color: blue;
+}
+
+body {
+  color: #878787;
+  margin: 0;
+}
+
+h1 {
+  font-size: 150px;
+  color: white;
+}
+
+h2 {
+  font-size: 53px;
+}
+
+h3 {
+  font-size: 20px;
+  color: #48525c;
+}
+
+
+****************
+	ID Selectors
+****************
+{
+Defined using the pound (#) symbol, followed by the ID name.
+
+THESE CARRY MORE WEIGHT THAN CLASS SELECTORS
+
+Unlike a type selector, which targets every element with the corresponding element type, an ID selector lets us assign a unique ID to an element.
+}
+
+For example: 
+#primary-content {
+  background: grey;
+}
+
+{
+This selector will match the HTML element that has an ID attribute with the value primary-content.
+
+IDs are unique to the page, so an element can only have one ID and a page can only have one element with the same ID name.
+}
+
+
+*******************
+	Class Selectors
+*******************
+{
+Defined with the dot (.) character, followed by the class name.
+
+Class selectors let us target elements based on their class attribute.
+The main difference between a class and an ID selector is that IDs are unique and they’re used to identify one element on the page, whereas a class can target more than one element.
+Give classes meaningful names that explain their purpose.
+}
+
+.primary-content {
+  background: grey;
+}
+
+
+*******************
+	Reusing Classes
+*******************
+{
+Besides being able to target more than one element with a single class selector, an element can also have multiple classes assigned to it.
+
+Example of reusing classes
+
+At times, we may have a lot of repeated CSS in our style sheets. So it's best to create classes for the repeated styles.
+
+Space-separate each class name in the class attribute:
+<div class="primary-content t-border rounded">
+
+Then, target each class in the style sheet:
+}
+
+.primary-content {
+  background: grey;
+}
+.t-border {
+  border-top: 1px solid;
+}
+.rounded {
+  border-radius: 10px;
+}
+
+
+************************
+	Descendant Selectors
+************************
+{
+To create a descendant selector, we’ll need to use two or more selectors separated by whitespace:
+
+(first one) (second one that is inside the first one) eg: /* don't include the brackets () */
+<header>
+	<div>
+	</div>
+</header>
+}
+header div {
+	border-radius 5px;
+}
+
+{
+CSS lets us target elements based on their relationship in the HTML document.
+We can combine selectors to create descendant selectors that target elements that are descendants of an element. This makes our selectors more specific.
+}
+Examples of descendant selectors
+
+.main-header span {
+  font-size: 26px;
+}
+
+ul li {
+  margin-bottom: 12px;
+}
+
+
+******************
+	Pseudo-Classes
+******************
+{
+https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+}
+Pseudo-classes are similar to classes, but they’re not explicitly defined in an element's class attribute.
+Unlike type, ID and class selectors, pseudo-classes can target elements dynamically based on user interaction, an element’s state, and more.
+
+Using pseudo-classes:
+
+Think of a pseudo-class as a keyword we add to a selector to style a special state of an element.
+
+The :link pseudo-class targets links that have not been visited by the user:
+
+a:link {
+  color: orange;
+}
+
+The :visited pseudo-class targets links that have been visited –– or clicked –– by the user:
+
+a:visited {
+  color: lightblue;
+}
+
+The :hover pseudo-class targets an element when a user hovers over it:
+
+a:hover {
+  color: forestgreen;
+}
+
+The :active pseudo-class gets applied when an element is in an active state:
+
+a:active {
+  color: lightcoral;
+}
+
+The :focus pseudo-class is only applied to interactive elements like links, buttons and form elements. The styles are applied as soon as the element receives focus:
+
+a:focus {
+  color: white;
+  background-color: orange;
+}
+
+																																					--------------------------
+																																						CSS DATA TYPES: Length
+																																					--------------------------
+
+{
+	A data type is another way of saying a CSS Value.
+https://developer.mozilla.org/en-US/docs/tag/CSS%20Data%20Type
+}
+
+
+***************
+	Pixel Units
+***************
+{
+/*CSS length units*/
+https://developer.mozilla.org/en-US/docs/Web/CSS/length 
+
+/*CSS px is an Angular Measurement*/
+http://inamidst.com/stuff/notes/csspx
+
+/*Understanding pixels and other CSS units*/
+https://docs.webplatform.org/wiki/tutorials/understanding-css-units
+
+When we use pixel units, the size we define will always remain the same and will not scale, regardless of the browser window and size of the screen.
+}
+.main-header {
+  width: 960px;
+}
+
+main-header will always take up 960px of the screen.
+
+
+********************
+	Percentage Units
+********************
+{
+/*Percentage units*/
+https://developer.mozilla.org/en-US/docs/Web/CSS/percentage
+}
+We can define number values more fluidly with percentage units. Percentages, by nature, are always relative to something else.
+When we use a percentage unit in CSS, the percentage value is measured relative to a parent element's length.
+
+
+.main-header {
+  width: 75%;
+}
+
+main-header will take up 75% of the browser window's width.
+
+
+************
+	Em Units
+************
+{
+1em = 16px (most of the time)
+Relative length units are relative to other length values. 
+The most commonly used relative unit is the em unit. The em is known as a font-relative unit because it's calculated based on a parent element's font size.
+}
+{
+
+Using em units
+-----------------------------------------------------
+If we set our body's font-size value to 1em:
+}
+body {
+  font-size: 1em;
+}
+
+This is equivalent to setting the font-size value to:
+
+body {
+  font-size: 16px;
+}
+
+-----------------------------------------------------
+Converting pixels to ems
+
+To convert a px value to its equivalent em value, we can follow a simple formula: divide an element’s px value by the parent element's font-size value.
+
+For example:
+
+.intro {
+  font-size: 24px;
+}
+
+To convert the font-size value of intro to an em value, we'll need to divide 24 by the parent element's font-size. In this case, the parent element is the body element, which has the font-size set to 1em, or 16px.
+
+24/16 = 1.5
+This gives us an em-based font-size value of:
+
+.intro {
+  font-size: 1.5em;  /* 24px/16px */
+}
+
+Tools:
+http://pxtoem.com/ /*PX to EM conversion made simple*/
+
+*************
+	Rem Units 	/* root em units */
+*************
+{
+The rem unit is similar to the em unit. The difference is that rem is relative only to the root element of the page. 
+This gets us around the compounding font size issue we experience with em units.
+
+https://snook.ca/archives/html_and_css/font-size-with-rem /* Font sizing with rem */
+}
+
+Using rem units
+
+h1 {
+  font-size: 5.625rem;
+}
+The h1 font size is now relative to the default 16px font size of the root <html> element.
+
+Related Videos:
+https://teamtreehouse.com/library/web-typography/basic-web-typography/fontsizing-px-em-and-rem-part-2
+
+
+
+																																					-------------------------
+																																						CSS DATA TYPES: Color
+																																					-------------------------
+****************
+	Color Values
+****************
+{
+Color plays an important role in web design. 
+With CSS, we can describe a color value in different ways. The three most common ways are with a keyword, a hexadecimal value, or an RGB function.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/color_value /* CSS color values - MDN */
+}
+-----------------------------------------------------
+Hexadecimal values
+
+.main-header {
+  background-color: #ff0033;
+}
+
+If the value is #ff0033, it can be written as #f03.
+-----------------------------------------------------
+RGB Values
+
+a:link {
+  color: rgb(255, 169, 73);
+}
+
+-----------------------------------------------------
+RGBa Values
+
+a:hover {
+  color: rgba(255, 169, 73, .4); /* Alpha value of "1" makes element fully opaque, 0 makes it invisible. */
+}
+
+-----------------------------------------------------
+Predefined Keywords
+
+a:visited {
+	color: orange;
+}
+
+{
+Related Videos
+https://teamtreehouse.com/library/how-to-make-a-website/customizing-colors-and-fonts/use-color-in-css /* Use Color in CSS */
+}
+
+
+																																		-------------------------------
+																																			CSS DATA TYPES: Text Styles
+																																		-------------------------------
+
+***************
+	Text Styles
+***************
+{
+
+Text has a significant effect on how we view a web page.
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-align */
+text-align
+Let's us control the horizontal alignment of text.
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform */
+text-transform
+Changes the case of text – whether it's uppercase, lowercase, or capitalized.
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration */
+text-decoration
+Sets the line decoration of elements. We'll commonly use this property to remove underlines in links.
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight */
+font-weight
+Sets how thick or thin the characters are displayed.
+}
+
+*******************
+	Font Properties
+*******************
+{
+Like text properties, font properties let us change the appearance of text by assigning a font family, font size, font style, and more.
+
+CSS font stacks are prioritized lists of fonts that the browser will cycle through until it finds a font that is installed on the user’s system.
+
+font-family   /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
+Defines a typeface for our text. 
+
+body{
+	  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Note: because Helvetica and Neue have a space, it must be written in quotation marks */
+}
+/* The browser will look for Helvetica Neue, then if it doesn't have that, Helvetica, then Arial, then sans-serif */
+----------------------------------------------------------------
+{
+
+font-style    /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-style */
+Allows italic or oblique faces to be selected within a font family.
+
+Tools:
+/* http://www.cssfontstack.com/ */
+}
+
+***************
+	Line Height
+***************
+{
+/* https://teamtreehouse.com/library/web-typography/basic-web-typography/vertical-space-lineheight-and-vertical-rhythm */
+
+With the line-height property, we can increase, or decrease, the vertical gaps between lines of text.
+We'll commonly use the line-height property in the body element to set the overall line-height of the page. For example:
+
+Rather use line-height value of undefined (1.5) than a relative value or fixed value.
+It will then take the normal line-height and times it by 1.5.
+}
+body {
+  line-height: 1.5;
+}
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
+
+The browser multiplies the font size of each element by 1.5 to determine their line height.
+
+font
+A shorthand property that lets us write all the font properties in one value.
+
+body {
+  font: normal 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/font */
+
+
+																																			---------------------
+																																				THE CSS BOX MODEL
+																																			---------------------
+{
+The box model is what describes the amount of space each element takes up on the page. 
+https://developer.mozilla.org/en-US/docs/Web/CSS/box_model
+}
+
+
+***********
+	Padding
+***********
+{
+Padding is often used to give an element's content area some breathing room by separating the content from the surrounding border area.
+Padding Reference
+
+We can define values for padding as any length or a percentage unit. There are two ways we can set the values for padding. The first way is setting each property individually:
+}
+.wildlife {
+  padding-top: 100px;
+  padding-right: 120px;
+  padding-bottom: 50px;
+  padding-left:  20px;
+}
+We can also use the shorthand property for padding, which lets us set the padding on all four sides in one declaration:
+
+.wildlife {
+  padding: 100px 120px 50px 20px;  
+}
+The order of the values is: Top, Right, Bottom, Left. Think clockwise.
+
+Padding percentage uses the box's width, not the height. So padding top/bottom/right/left will all be a percent of the box's width.
+
+.wildlife	{
+	padding: 100px 120px; /* This gives 100px padding top & bottom and 120px padding left & right */
+}
+
+.wildlife {
+	padding: 100px 120px 50px; /* This gives 100px padding top, 120px padding left & right, and 50px padding bottom */
+}
+
+
+***********
+	Borders
+***********
+{ Same value rules apply to padding as they do with borders.
+For example: 
+}
+	.wildlife {
+  color: white;
+  background-color: #434a52;
+  padding: 18% 24%;
+  border-width: 10px 20px; /* 10px top and bottom, and 20px left and right */
+  border-style: solid dotted dashed solid; /* solid top border, dotted right border, dashed left border, and solid left border */
+  border-color: red green #ffa949; /* red top border, right & left green border, and orange bottom border */
+} {
+border-width /* https://developer.mozilla.org/en-US/docs/Web/CSS/border-width */ 
+Sets the width of a border.
+
+border-style /* https://developer.mozilla.org/en-US/docs/Web/CSS/border-style */
+Sets the style of the element’s borders.
+
+border-color /* https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
+Sets the color of a border.
+
+border /* https://developer.mozilla.org/en-US/docs/Web/CSS/border */
+Shorthand property for setting the individual border property values in one place.
+}
+
+.wildlife {
+  color: white;
+  background-color: #434a52;
+  padding: 18% 24%;
+  border: 10px solid #ffa949; /* shorthand notation of border 10px all round, solid and orange */
+  border-bottom-style: dashed; /* This overwrites the line above it and will style the bottom border dashed */
+  border-left-color: green; /* This will overwrite the general border: 10px solid #ffa949; and replace the border left's color to green */
+}
+{
+  border-top: 10px solid #ffa949; /* This is shorthand notation for the border on top only (can have border-bottom, border-left, border-right too) */
+}
+{
+Finally - if NO color is selected, then the border will inherit the color of the text inside.
+}
+
+For example:
+
+.wildlife {
+	color: red;
+	background-color: green;
+	border: 10px solid;
+}
+
+This will give us a red border 10px and solid.
+
+**********
+	Margin
+**********
+{
+Related videos: 
+https://teamtreehouse.com/library/css-layout-techniques#display-modes
+https://teamtreehouse.com/library/how-to-make-a-website/debugging-html-and-css-problems/use-developer-tools
+
+Margins affect the area outside a box. We commonly use margin properties to create space around elements.
+
+The same order of padding shorthand values applies to the margin property.
+}
+.wildlife {
+  margin: 105px 0 60px 0;
+}
+This is exactly the same as writing out the full margin declarations:
+
+.wildlife {
+  margin-top: 105px;
+  margin-right: 0;
+  margin-bottom: 60px;
+  margin-left: 0;
+ }
+
+.wildlife {
+	margin: auto /* This will make the margin equal on all sides (center) */
+}
+{
+Chrome DevTools:
+https://developer.chrome.com/devtools
+}
+
+
+******************
+	Display Values
+******************
+{
+With the display property, we can override the default display settings of an element.
+
+--------------
+INLINE Display = it's inline with the rest of the content. 
+--------------
+
+for example: 
+this is text with a <link> inline.
+}
+code:
+.wildlife {
+	display: inline;
+}
+
+{
+--------------------------------------------------------------------------------------
+-------------
+BLOCK Display = it's on its own line (i.e. a block)'
+-------------
+
+for example: 
+this is text with a 
+<link>
+displayed in block display
+}
+code:
+.wildlife {
+	display: block;
+}
+{
+Related videos:
+https://teamtreehouse.com/library/css-layout-techniques#display-modes
+https://developer.mozilla.org/en-US/docs/Web/CSS/display
+}
+
+
+*******************************
+	Width and Height Properties
+*******************************
+{
+By default, an element's width and height are as wide or as tall as the content it holds. 
+But we're able to set our own dimensions with the width and height properties.
+https://developer.mozilla.org/en-US/docs/Web/CSS/width
+https://developer.mozilla.org/en-US/docs/Web/CSS/height
+}
+
+
+*******************************
+	Box-sizing and Max-width
+*******************************
+{
+With the box-sizing property, we can alter the way the browser calculates an element's total width and height. 
+We're also able to set the maximum width of an element with the max-width property.
+
+box-sizing /* https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing */
+Alters the default CSS box model used to calculate widths and heights of elements.
+
+max-width /* https://developer.mozilla.org/en-US/docs/Web/CSS/max-width */
+Sets the maximum width of an element. It prevents the used value of the width property from becoming larger than the value set for max-width.
+
+Related Articles
+
+Take Control of the Box Model with box-sizing /* http://blog.teamtreehouse.com/take-control-of-the-box-model-with-box-sizing */
+}
+
+																																	---------------
+																																		Backgrounds
+																																	---------------
+
+********************
+	Color and Images
+********************
+{
+Every HTML element has a background layer that is transparent by default.
+Quick Reference
+
+background-image /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-image */
+Sets one or several background images for an element. /* background-image: url('../img/mountains.jpg');  */
+
+background-size /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */ /* background-size: cover; <-- this makes the image fill the whole background both width and height(within the container) */
+Sets the size of a background image. /* Remember that the size (100%) is not the image size, but the size of the WIDTH of the container */ /* background-size: 40%; */
+
+background-repeat /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */ 
+Controls whether or not the image is tiled and how it gets tiled both vertically and horizontally. /* background-repeat: no-repeat; background-repeat: repeat-x; */ 
+The value repeat-y repeats the image vertically, while repeat-x repeats the background image horizontally.
+
+It's normally  good practice to set a background color just in case the user has disabled images in the browser, or it doesn't load.
+}
+
+
+*********************
+	Position and Size
+*********************
+{
+Quick Reference
+
+Full Page Background Images in CSS /* http://blog.teamtreehouse.com/quick-tip-full-page-background-images-in-css */
+background-position
+Controls the background position of a background image. By default, a background image’s initial position is the top-left corner of the containing element.
+
+background-position: center top; /* First targets the x axis, then the y axis. If you just leave it as one unit, then it assumes the same for both e.g. center */
+background-position: 20% 50%; /* This will center the image 20% from the left to the right of the background and 50% from the top to the bottom */
+
+background
+Shorthand for setting the individual background values in one place.
+
+cover
+The cover value adjusts the background area so that it's completely covered by the background image, while maintaining its width and height proportions:
+}
+.main-header {
+  background-image: url('../img/mountains.jpg');     
+  background-size: cover;
+}
+
+SHORT HAND NOTATION:
+.main-header {
+	background: #ffa949 url('../img/mountains.jpg') no-repeat center / cover;
+	/* background-color:  background-image:  background-repeat:  background-position:  /  background-size:  */
+	/*sometimes it's easier to read to write the background-size on the next line instead of defining it in the shorthand.*/
+}
+
+**********
+	FLOATS
+**********
+{
+Related Videos
+
+CSS Layout Techniques - Floats /* https://teamtreehouse.com/library/css-layout-techniques/float-layout/why-floats-are-used-in-web-design */
+Quick Reference
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/float */
+Floats are one of the most commonly used methods for laying out a page with CSS. When an element is floated, the element is taken out of the normal flow of the page and placed along the left or right side of its container.
+
+The following will float an element over to the right side of its container:
+}
+.tips {
+  float: right;
+}
+The following will place the element along the left side of its container:
+
+.tips {
+  float: left;
+}
+
+
+*******************
+	Clearing Floats
+*******************
+{
+If a block element contains floated children, its height will collapse.
+
+Related Videos
+CSS Layout Techniques - The Float Clearfix 					/*https://teamtreehouse.com/library/css-layout-techniques/float-layout/the-float-clearfix*/
+CSS Selectors - :before and :after Pseudo-elements 	/* https://teamtreehouse.com/library/css-selectors/advanced-selectors/pseudoelements-before-and-after */
+
+Quick Reference
+overflow							/* https://developer.mozilla.org/en-US/docs/Web/CSS/overflow */
+clear									/* https://developer.mozilla.org/en-US/docs/Web/CSS/clear */
+The clearfix "hack" 	/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+content: ' ' 					/* https://developer.mozilla.org/en-US/docs/Web/CSS/content */
+
+}
+
+/* Float Clearfix ------------------ */
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+{
+Then add class="group" to the parent div.
+}
+
+																																	---------
+																																		Lists
+																																	---------
+{
+Quick Reference
+
+list-style-type /* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type */
+Sets the appearance of a list item. /* You can change the bullets/numbers into anything you want */
+
+list-style-position /* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */
+Sets the position of a list marker in a list item. By default, the browser displays the list markers outside the list items.
+
+list-style /* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style */
+The shorthand property for setting list-style-type, list-style-image and list-style-position.
+}
+
+
+																																-----------
+																																	Shadows
+																																-----------
+****************
+	Text Shadows
+****************
+
+{
+Quick Reference
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow */
+The text-shadow property accepts three length unit values followed by a color value:
+}
+h1 {
+  text-shadow: 2px 2px 1px #222;
+}
+{
+The first value sets the horizontal (x) offset of the shadow. The second value sets the vertical (y) offset. 
+The third is an optional value that sets the blur radius of the shadow. The fourth value is the color value.
+
+Tools
+3D text example - by Mark Otto
+/* http://markdotto.com/playground/3d-text/ */
+}
+
+
+***************
+	Box Shadows
+***************
+{
+Quick Reference
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
+The order of values for box-shadow is exactly like the order of values for the text-shadow property:
+}
+
+.wildlife {
+    box-shadow: 15px 15px 10px 20px rgba(0, 0, 0, .8);
+}
+
+{
+The first value sets the horizontal (x) offset of the shadow. The second value sets the vertical (y) offset. The last value sets the color of the box shadow.
+
+The optional third value defines the blur radius in a box shadow. The optional fourth value defines the spread distance of a box shadow.
+
+------------------------------------------------------
+
+Inner shadows
+By default, box shadows are created as drop shadows outside of the element. To create an inner shadow, we can add the keyword value inset:
+} /* the keyword inset must be at the beginning of the line, or the end of the line */
+.wildlife {
+   box-shadow: inset 0 0 50px 10px rgba(0, 0, 0, 1);
+}
+
+------------------------------------------------------
+{
+Multiple values
+Just like the text-shadow property you can use multiple box-shadow values separated with a comma like so:
+}
+.wildlife {
+    box-shadow: 15px 15px 10px 20px rgba(0, 0, 0, .8),
+                            inset 0 0 50px 10px rgba(0, 0, 0, 1);
+    }
+
+
+																																----------
+																																	Radius
+																																----------
+
+*****************
+	Border Radius
+*****************
+{
+CSS has properties that let us create rounded corners on elements without the need for any images or extra markup. 
+With border-radius, we can define exactly how rounded the borders appear.
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+The border-radius property is the shorthand property for:
+}
+.box {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 10px; 
+}
+{
+So, instead of writing each declaration, we can simply use the border-radius property to define the curve of each corner:
+}
+.box {
+  border-radius: 20px 10px 20px 10px;
+}
+{
+The top-left and bottom-right values are the same, and the top-right and bottom-left value are as well. So we can shorten this further:
+}
+.box {
+  border-radius: 20px 10px;
+}
+{
+If we want to set an even border-radius for each side, we'll simply need to define one value:
+}
+.box {
+  border-radius: 20px;
+}
+Related Articles
+/* http://blog.teamtreehouse.com/css-tip-better-rounded-borders */
+CSS Tip: Better Rounded Borders
+
+																																-------------
+																																	Gradients
+																																-------------
+
+*************
+	Gradients
+*************
+{
+With CSS gradients, we can add depth to our designs by creating smooth and gradual transitions between two or more colors.
+
+Quick Reference
+
+Using CSS gradients
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients */
+linear-gradient
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient */
+radial-gradient
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient */
+}
+
+
+**************************
+	Gradients: Color Stops
+**************************
+{
+We're able to add color stops to control the progression of colors in a linear and radial gradient. 
+Color stops are stopping points in a gradient that show a specific color at the exact location we set.
+
+Quick Reference:
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients#Linear_gradients-Color_stops */
+}
+.main-header{
+  background-image: radial-gradient(circle at top right, #ffa949 25%, firebrick 80%, dodgerblue 180%);
+}
+
+
+**************************************************
+	Transparent Gradients and Multiple Backgrounds
+**************************************************
+{
+When defining multiple background layers - remember that the first one listed will be the TOP layer, and the last one will be at the bottom.
+CSS lets us layer multiple backgrounds and create gradients where a color value transitions into a transparent value.
+
+Quick Reference
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients#Transparency_and_gradients */
+Transparency and gradients 
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders/Using_CSS_multiple_backgrounds */
+Using CSS multiple backgrounds
+}
+
+for example:
+.main-header {
+  padding-top: 170px;
+  height: 850px;
+  background: linear-gradient(#ffa949, transparent 90%), /* top layer - this starts orange and fades to transparent at 90% */
+              linear-gradient(0deg, #fff, transparent), /* middle layer this starts white and fades to transparent but goes from the bottom to the top*/
+              #ffa949 url('../img/mountains.jpg') no-repeat center; /* bottom layer this is the background image*/
+  
+  background-size: cover;
+  }
+
+  																															-------------
+																																	Web Fonts
+																																-------------
+
+******************************
+	Web Fonts with @font-face8
+******************************
+{
+Web fonts are special types of fonts that are optimized for screen display, and they're linked to our web pages from an external source. 
+Web fonts eliminate the need to depend on the limited number of fonts installed on a user's computers.
+
+Related Videos
+
+How to Choose and Use Webfonts /* https://teamtreehouse.com/library/web-typography#how-to-choose-and-use-webfonts */
+
+
+Quick Reference:;
+@font-face /* https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face */
+letter-spacing /* https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing */
+
+Resources:; 
+Font Squirrel – Free web fonts /* https://www.fontsquirrel.com/ */
+}
+
+example:
+
+@font-face { /* note it's not @font-face: but @font-face */
+  font-family: 'Abolition Regular';
+  src: url('../fonts/abolition-regular-webfont.eot');
+  src: url('../fonts/abolition-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/abolition-regular-webfont.woff') format('woff'),
+       url('../fonts/abolition-regular-webfont.ttf') format('truetype');
+}
+
+h1,
+h2 {
+  font-family: 'Abolition Regular', Helvetica, Arial, sans-serif;
+}
+/* For interest - added the h1 and h2 */
+h1 {  
+  font-size: 5.625rem; /* 90px/16px  */
+  color: rgba(255, 255, 255, 1);
+  text-transform: uppercase;
+  font-weight: normal;
+  line-height: 1.3;
+  text-shadow: 0 1px 1px rgba(0,0,0, .8);
+  margin: 12px 0 0;
+}
+
+h2 {
+  font-size: 3.3125em; /* 53px/16px  */
+  font-weight: normal;
+  line-height: 1.1;
+  margin: 0 0 .5em; /* 0 0 26px */
+}
