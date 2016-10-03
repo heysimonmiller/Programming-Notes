@@ -1031,3 +1031,197 @@ h2 {
   line-height: 1.1;
   margin: 0 0 .5em; /* 0 0 26px */
 }
+
+                                                                -----------------
+                                                                  Media Queries
+                                                                -----------------
+{
+With media queries, we're able to enhance the browsing experience of websites on multiple devices and viewport sizes.
+This allows us to tailor our content to a wide range of devices without having to change anything in the HTML.
+If no media type is selected, then all is the default.
+}
+@media (max-width: 960px) { /* Note: no semicolon after 960px */
+}
+
+---------------------------------------------------------------------------
+{
+Quick Reference
+CSS media queries - MDN /* https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries */
+
+@media /* https://developer.mozilla.org/en-US/docs/Web/CSS/@media */
+
+
+Media features /* https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features */
+
+
+Probably Use initial-scale=1 /* https://css-tricks.com/probably-use-initial-scale1/ */
+
+
+---------------------------------------------------------------------------
+
+Tools
+Window Resizer - Resize browser window to emulate various screen resolutions
+/* https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en */
+---------------------------------------------------------------------------
+examples:
+/* Media Queries --------------------- */
+}
+@media (max-width: 960px) {
+  body {
+    background: royalblue;
+  }
+}
+
+
+@media (max-width: 480px) {
+  body {
+    background: darkred;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 700px) {
+  body {
+    background: seagreen;
+  }
+  p {
+    color: white;
+  }
+}
+
+
+*******************************************
+  Adjusting the Layout with Media Queries
+*******************************************
+
+Quick Reference
+Using the viewport meta tag to control layout on mobile browsers
+/* https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag */
+-----------------------------------------------------------------
+
+Tools
+Device Mode & Mobile Emulation
+/* https://developers.google.com/web/tools/chrome-devtools/iterate/device-mode/?utm_source=dcc&utm_medium=redirect&utm_campaign=2016q3 */
+Window Resizer - Resize browser window to emulate various screen resolutions
+/* https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en */
+
+Add <meta name="viewport" content="width=device-width"> into html to make the content display correctly on mobile devices.
+
+examples:
+
+/* Media Queries --------------------- */
+
+@media (max-width: 1024px) {
+  .primary-content,
+  .secondary-content {
+    width: 90%;
+  }
+  .wildlife {
+    padding: 10% 12%;
+    margin: 50px 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .primary-content,
+  .secondary-content {
+    width: 100%;
+    padding: 20px;
+    border-top: none;
+  }
+  .main-header {
+    max-height: 380px;
+    padding: 50px 25px 0;
+  }
+  .title {
+  font-size: 1.3rem;
+  border: none;
+  }
+  h1 {
+    font-size: 5rem;
+    line-height: 1.1;
+  }
+  .arrow {
+    display: none;
+  }
+  .intro {
+    font-size: 1rem;
+  }
+  .resorts,
+  .tips {
+    float: none;
+    width: 100%;
+  }
+  .main-footer {
+    padding: 20px 0;
+  }
+}
+
+
+                                                                ---------------
+                                                                  The Cascade
+                                                                ---------------
+
+***************************
+  The Cascade: Importance
+***************************
+
+An important part of learning CSS is understanding how CSS rules are applied by the browser via the cascade.
+In CSS, the cascade is what determines which styles are assigned to an HTML element.
+
+Cascade - MDN /* https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade */
+
+
+*********************************************
+  The Cascade: Specificity and Source Order
+*********************************************
+
+Specificity is what resolves a lot the conflict between style declarations and decides which styles are applied by the browser.
+The cascade also assigns a priority to CSS styles based on what order they appear.
+
+Specificity - MDN /*https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity*/
+
+
+***************
+  Inheritance
+***************
+
+Inheritance in CSS means that an element’s style values are copied from its parent element. 
+Inheritance allows us to keep styles consistent throughout a website without having to repeat them in our code.
+
+Quick Reference
+Cascading and inheritance - MDN /* https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance */
+inherit value /* https://developer.mozilla.org/en-US/docs/Web/CSS/inherit */ This inherits the value from the parent.
+initial value /* https://developer.mozilla.org/en-US/docs/Web/CSS/initial_value */ This displays the initial (default) value. I.e. text black.
+
+Remember: Importance, specificity, source order. <<<<<<-------------------------------------------------------------------
+
+
+                                                                --------------------------
+                                                                  Learning Tips & Tricks
+                                                                --------------------------
+Project Ideas
+
+Create new subpages for the Lake Tahoe website
+Build a single-page website for your favorite city
+Build a small website component, like a header, navigation, or form
+Redesign the website of your favorite local restaurant or band
+Design a website for a local non-profit organization
+Learn how to refactor the Lake Tahoe website with Sass in our new course CSS to Sass
+More CSS Courses /* https://teamtreehouse.com/library/css-to-sass */
+
+CSS Selectors (new)
+/* https://teamtreehouse.com/library/css-selectors */
+CSS Layout Techniques
+/* https://teamtreehouse.com/library/css-layout-techniques */
+CSS - Beyond the Basics
+/* https://teamtreehouse.com/library/css-beyond-the-basics */
+Web Typography
+/* https://teamtreehouse.com/library/web-typography */
+Framework Basics
+/* https://teamtreehouse.com/library/framework-basics */
+Tools
+
+Workspaces
+/* https://teamtreehouse.com/workspaces */
+CodePen
+/* http://codepen.io/ */
