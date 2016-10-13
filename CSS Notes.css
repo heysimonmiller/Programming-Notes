@@ -1104,7 +1104,7 @@ Device Mode & Mobile Emulation
 Window Resizer - Resize browser window to emulate various screen resolutions
 /* https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en */
 
-Add <meta name="viewport" content="width=device-width"> into html to make the content display correctly on mobile devices.
+CRITICAL >>> Add <meta name="viewport" content="width=device-width"> into html to make the content display correctly on mobile devices.
 
 examples:
 
